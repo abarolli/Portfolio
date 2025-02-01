@@ -1,0 +1,19 @@
+.welcomeScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcomeScreenCardContainer {
+  width: 90vw;
+  max-width: 1200px;
+  height: fit-content;
+  white-space: nowrap;
+  /* background-color: blue; */
+}
+
+@media screen and (max-width: 900px) {
+  .welcomeScreenCardContainer {
+    width: 70vw;
+  }
+}
