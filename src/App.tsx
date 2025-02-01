@@ -1,16 +1,12 @@
-import { useState } from "react";
-import "./App.css";
-import ProfileImage from "./ProfileImage";
+import { CSSProperties, useState } from "react";
+
+import "normalize.css";
+import "./index.css";
+
+import WelcomeScreen from "./WelcomeScreen";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>Oni's Portfolio</h1>
-      <ProfileImage />
-    </>
-  );
+  return <WelcomeScreen />;
 }
 
 export default App;
