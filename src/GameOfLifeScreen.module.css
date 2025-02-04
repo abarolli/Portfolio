@@ -1,0 +1,5 @@
+.gameOfLifeContainer {
+  display: grid;
+  background-color: grey;
+  gap: 1px;
+}
