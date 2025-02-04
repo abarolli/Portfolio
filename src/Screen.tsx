@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Screen.module.css";
+import "./index.css";
 
 interface Props {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 
 function Screen({ children, style, className }: Props) {
   return (
-    <div className={[styles.screen, className].join(" ")} style={style}>
+    <div className={["screen", className].join(" ")} style={style}>
       {children}
     </div>
   );
