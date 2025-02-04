@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import _ from "lodash";
 
 import Screen from "./Screen";
@@ -36,6 +36,7 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   };
 
   const [grid, setGrid] = useState(initGrid());
+  const animationRef = useRef<number | null>(null);
 
   const handleCellClick = useCallback((index: number) => {
     setGrid((prevGrid) => {
@@ -60,16 +61,20 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     return handlers;
   }, [nRows, nCols, handleCellClick]);
 
-  const getLiveNeighborCount = (row: number, col: number): number => {
+  const getLiveNeighborCount = (
+    currentGrid: CellProps[][],
+    row: number,
+    col: number
+  ): number => {
     const neighbors: CellProps[] = [
-      grid[Math.max(row - 1, 0)][Math.max(col - 1, 0)], // top left
-      grid[Math.max(row - 1, 0)][col], // top
-      grid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)], // top right
-      grid[row][Math.max(col - 1, 0)], // left
-      grid[row][Math.min(col + 1, nCols - 1)], // right
-      grid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)], // bottom left
-      grid[Math.min(row + 1, nRows - 1)][col], // bottom
-      grid[Math.min(row + 1, nRows - 1)][Math.min(col + 1, nCols - 1)], // bottom right
+      currentGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)], // top left
+      currentGrid[Math.max(row - 1, 0)][col], // top
+      currentGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)], // top right
+      currentGrid[row][Math.max(col - 1, 0)], // left
+      currentGrid[row][Math.min(col + 1, nCols - 1)], // right
+      currentGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)], // bottom left
+      currentGrid[Math.min(row + 1, nRows - 1)][col], // bottom
+      currentGrid[Math.min(row + 1, nRows - 1)][Math.min(col + 1, nCols - 1)], // bottom right
     ];
 
     let count = 0;
@@ -81,7 +86,7 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     setGrid((prevGrid) => {
       return prevGrid.map((row, rowNum) => {
         return row.map((cell, colNum) => {
-          const neighborCount = getLiveNeighborCount(rowNum, colNum);
+          const neighborCount = getLiveNeighborCount(prevGrid, rowNum, colNum);
           if (cell.isAlive) {
             switch (neighborCount) {
               case 2:
@@ -98,6 +103,18 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
       });
     });
   };
+
+  let frame = 0;
+  const playGenerations = () => {
+    if (++frame % 20 === 0) {
+      updateNextGeneration();
+    }
+
+    animationRef.current = requestAnimationFrame(playGenerations);
+  };
+
+  const stopGenerations = () =>
+    animationRef.current && cancelAnimationFrame(animationRef.current);
 
   const mapGridToCellComponents = () => {
     const retVal = grid
@@ -119,6 +136,8 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
         {mapGridToCellComponents()}
       </div>
       <button onClick={updateNextGeneration}>Next Generation</button>
+      <button onClick={playGenerations}>Play</button>
+      <button onClick={stopGenerations}>Stop</button>
     </Screen>
   );
 }
