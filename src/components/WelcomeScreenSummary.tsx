@@ -1,5 +1,5 @@
 import React from "react";
-import colors from "./configs/colors";
+import colors from "../configs/colors";
 
 function WelcomeScreenSummary() {
   return (

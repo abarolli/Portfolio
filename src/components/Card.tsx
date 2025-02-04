@@ -1,6 +1,6 @@
 import React from "react";
 
-import colors from "./configs/colors";
+import colors from "../configs/colors";
 
 import styles from "./Card.module.css";
 
