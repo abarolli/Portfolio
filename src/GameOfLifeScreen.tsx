@@ -12,7 +12,6 @@ interface CellProps {
 }
 
 const Cell = React.memo(function ({ isAlive = false, onClick }: CellProps) {
-  console.log("Cell rendered: isAlive=", isAlive);
   return (
     <div
       onClick={onClick}
@@ -30,13 +29,10 @@ interface Props {
 }
 
 function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
-  console.log("Game of Life Screen Rendered");
-
-  const initGrid = () => {
-    const grid: CellProps[][] = Array.from({ length: nRows }, () =>
+  const initGrid = (): CellProps[][] => {
+    return Array.from({ length: nRows }, () =>
       Array.from({ length: nCols }, () => ({}))
     );
-    return grid;
   };
 
   const [grid, setGrid] = useState(initGrid());
@@ -64,6 +60,45 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     return handlers;
   }, [nRows, nCols, handleCellClick]);
 
+  const getLiveNeighborCount = (row: number, col: number): number => {
+    const neighbors: CellProps[] = [
+      grid[Math.max(row - 1, 0)][Math.max(col - 1, 0)], // top left
+      grid[Math.max(row - 1, 0)][col], // top
+      grid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)], // top right
+      grid[row][Math.max(col - 1, 0)], // left
+      grid[row][Math.min(col + 1, nCols - 1)], // right
+      grid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)], // bottom left
+      grid[Math.min(row + 1, nRows - 1)][col], // bottom
+      grid[Math.min(row + 1, nRows - 1)][Math.min(col + 1, nCols - 1)], // bottom right
+    ];
+
+    let count = 0;
+    neighbors.forEach((n) => (count += n.isAlive ? 1 : 0));
+    return count;
+  };
+
+  const updateNextGeneration = () => {
+    setGrid((prevGrid) => {
+      return prevGrid.map((row, rowNum) => {
+        return row.map((cell, colNum) => {
+          const neighborCount = getLiveNeighborCount(rowNum, colNum);
+          if (cell.isAlive) {
+            switch (neighborCount) {
+              case 2:
+              case 3:
+                return { ...cell };
+              default:
+                return { ...cell, isAlive: false };
+            }
+          } else {
+            if (neighborCount === 3) return { ...cell, isAlive: true };
+            return { ...cell };
+          }
+        });
+      });
+    });
+  };
+
   const mapGridToCellComponents = () => {
     const retVal = grid
       .flat()
@@ -74,7 +109,7 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   };
 
   return (
-    <Screen className="screen--centered">
+    <Screen className="screen--centered screen--centered-col">
       <div
         style={{
           gridTemplate: `repeat(${nRows}, ${cellSize}) / repeat(${nCols}, ${cellSize})`,
@@ -83,6 +118,7 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
       >
         {mapGridToCellComponents()}
       </div>
+      <button onClick={updateNextGeneration}>Next Generation</button>
     </Screen>
   );
 }
