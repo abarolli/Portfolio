@@ -5,12 +5,13 @@ import WelcomeScreenSummary from "./WelcomeScreenSummary";
 import MyFace from "./MyFace";
 import colors from "./configs/colors";
 
+import "./index.css";
 import styles from "./WelcomeScreen.module.css";
 
 function WelcomeScreen() {
   return (
     <Screen
-      className={styles.welcomeScreen}
+      className="screen--centered"
       style={{ backgroundColor: colors.mainTheme }}
     >
       <div className={styles.welcomeScreenCardContainer}>
