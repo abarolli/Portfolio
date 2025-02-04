@@ -66,15 +66,26 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     row: number,
     col: number
   ): number => {
+    const deadCell = { isAlive: false };
     const neighbors: CellProps[] = [
-      currentGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)], // top left
-      currentGrid[Math.max(row - 1, 0)][col], // top
-      currentGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)], // top right
-      currentGrid[row][Math.max(col - 1, 0)], // left
-      currentGrid[row][Math.min(col + 1, nCols - 1)], // right
-      currentGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)], // bottom left
-      currentGrid[Math.min(row + 1, nRows - 1)][col], // bottom
-      currentGrid[Math.min(row + 1, nRows - 1)][Math.min(col + 1, nCols - 1)], // bottom right
+      ...(row === 0
+        ? Array(3).fill(deadCell)
+        : [
+            currentGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)],
+            currentGrid[Math.max(row - 1, 0)][col],
+            currentGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)],
+          ]), // top neighbors
+      col === 0 ? deadCell : currentGrid[row][Math.max(col - 1, 0)], // left
+      col === nCols ? deadCell : currentGrid[row][Math.min(col + 1, nCols - 1)], // right
+      ...(row === nRows - 1
+        ? Array(3).fill(deadCell)
+        : [
+            currentGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)],
+            currentGrid[Math.min(row + 1, nRows - 1)][col],
+            currentGrid[Math.min(row + 1, nRows - 1)][
+              Math.min(col + 1, nCols - 1)
+            ],
+          ]), // bottom
     ];
 
     let count = 0;
