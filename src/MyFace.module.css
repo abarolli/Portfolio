@@ -1,0 +1,14 @@
+.face {
+  background-image: url(/me.jpeg);
+  height: 350px;
+  width: 350px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 900px) {
+  .face {
+    height: 500px;
+    width: 500px;
+  }
+}
