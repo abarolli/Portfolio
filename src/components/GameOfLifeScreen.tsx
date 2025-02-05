@@ -28,7 +28,7 @@ interface Props {
   cellSize: string;
 }
 
-function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
+function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const initGrid = (): CellProps[][] => {
     return Array.from({ length: nRows }, () =>
       Array.from({ length: nCols }, () => ({}))
@@ -115,6 +115,12 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     });
   };
 
+  let startAnimation = () => {
+    if (animationRef.current) return;
+
+    playGenerations();
+  };
+
   let frame = 0;
   const playGenerations = () => {
     if (++frame % 20 === 0) {
@@ -124,8 +130,10 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
     animationRef.current = requestAnimationFrame(playGenerations);
   };
 
-  const stopGenerations = () =>
+  const stopAnimation = () => {
     animationRef.current && cancelAnimationFrame(animationRef.current);
+    animationRef.current = null;
+  };
 
   const mapGridToCellComponents = () => {
     const retVal = grid
@@ -137,18 +145,45 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   };
 
   return (
-    <Screen className="screen--centered screen--centered-col">
+    <div style={{ position: "relative" }}>
       <div
         style={{
           gridTemplate: `repeat(${nRows}, ${cellSize}) / repeat(${nCols}, ${cellSize})`,
+          marginRight: "20px",
         }}
         className={styles.gameOfLifeContainer}
       >
         {mapGridToCellComponents()}
       </div>
-      <button onClick={updateNextGeneration}>Next Generation</button>
-      <button onClick={playGenerations}>Play</button>
-      <button onClick={stopGenerations}>Stop</button>
+      <div
+        style={{
+          position: "absolute",
+          display: "flex",
+          flexDirection: "column",
+          top: 0,
+          left: "100%",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <button style={{ marginBottom: "20px" }} onClick={startAnimation}>
+          Play
+        </button>
+        <button style={{ marginBottom: "20px" }} onClick={stopAnimation}>
+          Stop
+        </button>
+        <button style={{ marginBottom: "20px" }} onClick={updateNextGeneration}>
+          Next Generation
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
+  return (
+    <Screen className="screen--centered screen--centered-col">
+      <h1 style={{ marginBottom: "20px" }}>Game of Life by John Conway</h1>
+      <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
     </Screen>
   );
 }
