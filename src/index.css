@@ -42,3 +42,7 @@ h1 {
 .screen--centered.screen--centered-col {
   flex-direction: column;
 }
+
+ul ul {
+  margin-left: 10px;
+}

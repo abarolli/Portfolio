@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 import _ from "lodash";
 
 import Screen from "./Screen";
+import Cell, { CellProps } from "./Cell";
 
 import "../index.css";
 import styles from "./GameOfLifeScreen.module.css";
@@ -47,7 +48,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
   }, [nRows, nCols, handleCellClick]);
 
   const getLiveNeighborCount = (
-    currentGrid: CellProps[][],
+    prevGrid: CellProps[][],
     row: number,
     col: number
   ): number => {
@@ -56,18 +57,18 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
       ...(row === 0
         ? Array(3).fill(deadCell)
         : [
-            currentGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)],
-            currentGrid[Math.max(row - 1, 0)][col],
-            currentGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)],
+            prevGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)],
+            prevGrid[Math.max(row - 1, 0)][col],
+            prevGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)],
           ]), // top neighbors
-      col === 0 ? deadCell : currentGrid[row][Math.max(col - 1, 0)], // left
-      col === nCols ? deadCell : currentGrid[row][Math.min(col + 1, nCols - 1)], // right
+      col === 0 ? deadCell : prevGrid[row][Math.max(col - 1, 0)], // left
+      col === nCols ? deadCell : prevGrid[row][Math.min(col + 1, nCols - 1)], // right
       ...(row === nRows - 1
         ? Array(3).fill(deadCell)
         : [
-            currentGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)],
-            currentGrid[Math.min(row + 1, nRows - 1)][col],
-            currentGrid[Math.min(row + 1, nRows - 1)][
+            prevGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)],
+            prevGrid[Math.min(row + 1, nRows - 1)][col],
+            prevGrid[Math.min(row + 1, nRows - 1)][
               Math.min(col + 1, nCols - 1)
             ],
           ]), // bottom
@@ -102,7 +103,6 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
 
   let startAnimation = () => {
     if (animationRef.current) return;
-
     playGenerations();
   };
 
@@ -134,22 +134,12 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
       <div
         style={{
           gridTemplate: `repeat(${nRows}, ${cellSize}) / repeat(${nCols}, ${cellSize})`,
-          marginRight: "20px",
         }}
         className={styles.gameOfLifeContainer}
       >
         {mapGridToCellComponents()}
       </div>
-      <div
-        style={{
-          position: "absolute",
-          display: "flex",
-          flexDirection: "column",
-          top: 0,
-          left: "100%",
-          whiteSpace: "nowrap",
-        }}
-      >
+      <div className={styles.gameOfLifeController}>
         <button style={{ marginBottom: "20px" }} onClick={startAnimation}>
           Play
         </button>
@@ -166,9 +156,60 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
 
 function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   return (
-    <Screen className="screen--centered screen--centered-col">
-      <h1 style={{ marginBottom: "20px" }}>Game of Life by John Conway</h1>
-      <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
+    <Screen
+      style={{
+        backgroundColor: colors.buttons,
+        color: colors.subtleAccents,
+      }}
+      className="screen--centered screen--centered-col"
+    >
+      <h1 style={{ marginBottom: "20px" }}>Game of Life</h1>
+      <div style={{ position: "relative", lineHeight: "15px" }}>
+        <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
+        <div
+          style={{
+            width: "250px",
+            position: "absolute",
+            top: 0,
+            right: "100%",
+          }}
+        >
+          <p>
+            <strong>Game of Life</strong> is a cellular automaton that was
+            introduced by famous computer scientist,{" "}
+            <strong>John Conway</strong>. Among many other things, it shows how
+            complex behavior can arise from simple, deterministic rules.
+          </p>
+          <h2 style={{ marginTop: "20px" }}>Rules:</h2>
+          <ul>
+            <li>
+              If a cell is alive:
+              <ul>
+                <li>
+                  If it is surrounded by one or no live neighbors, it dies by
+                  solitude.
+                </li>
+                <li>
+                  If it is surrounded by four or more live neighbors, it dies by
+                  overpopulation.
+                </li>
+                <li>
+                  If it is surrounded by two or three live neighbors, it
+                  survives to the next generation.
+                </li>
+              </ul>
+            </li>
+            <li>
+              If a cell is dead:
+              <ul>
+                <li>
+                  If it is surrounded by three live neighbors, it becomes alive.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </Screen>
   );
 }
