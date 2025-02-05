@@ -5,22 +5,7 @@ import Screen from "./Screen";
 
 import "../index.css";
 import styles from "./GameOfLifeScreen.module.css";
-
-interface CellProps {
-  isAlive?: boolean;
-  onClick?: React.MouseEventHandler;
-}
-
-const Cell = React.memo(function ({ isAlive = false, onClick }: CellProps) {
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        backgroundColor: isAlive ? "blue" : "white",
-      }}
-    ></div>
-  );
-});
+import colors from "../configs/colors";
 
 interface Props {
   nRows: number;
