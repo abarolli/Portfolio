@@ -23,6 +23,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
 
   const [grid, setGrid] = useState(initGrid());
   const animationRef = useRef<number | null>(null);
+  const [isRunning, setIsRunning] = useState(Boolean(animationRef.current));
 
   const handleCellClick = useCallback((index: number) => {
     setGrid((prevGrid) => {
@@ -93,6 +94,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
 
   let startAnimation = () => {
     if (animationRef.current) return;
+    setIsRunning(true);
     playGenerations();
   };
 
@@ -108,6 +110,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const stopAnimation = () => {
     animationRef.current && cancelAnimationFrame(animationRef.current);
     animationRef.current = null;
+    setIsRunning(false);
   };
 
   const mapGridToCellComponents = () => {
@@ -130,6 +133,15 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
         {mapGridToCellComponents()}
       </div>
       <div className={styles.gameOfLifeController}>
+        <div>
+          <div
+            className={[
+              styles.gridAnimationStatus,
+              isRunning && styles.running,
+            ].join(" ")}
+          ></div>
+          <p>Running</p>
+        </div>
         <button onClick={startAnimation}>Play</button>
         <button onClick={stopAnimation}>Stop</button>
         <button onClick={updateNextGeneration}>Next Generation</button>
@@ -174,6 +186,16 @@ const GameOfLifeDescription: JSX.Element = (
         </ul>
       </li>
     </ul>
+    <h3>User Instructions:</h3>
+    <p>Click on the grid to add cells.</p>
+    <p>
+      Press <span style={{ color: colors.electricCyan }}>Play</span> to let the
+      cellular automaton run.
+    </p>
+    <p>
+      Walk through each generation one at a time with{" "}
+      <span style={{ color: colors.electricCyan }}>Next Generation</span>
+    </p>
   </div>
 );
 
@@ -181,8 +203,8 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   return (
     <Screen
       style={{
-        backgroundColor: colors.buttons,
-        color: colors.subtleAccents,
+        backgroundColor: colors.subtleAccents,
+        color: colors.text,
       }}
       className="screen--centered screen--centered-col"
     >
