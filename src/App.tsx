@@ -10,7 +10,11 @@ function App() {
   return (
     <>
       <WelcomeScreen />
-      <GameOfLifeScreen nRows={30} nCols={50} cellSize="15px" />
+      <GameOfLifeScreen
+        nRows={window.innerHeight < 700 ? 30 : 40}
+        nCols={window.innerWidth < 1600 ? 50 : 60}
+        cellSize="15px"
+      />
     </>
   );
 }
