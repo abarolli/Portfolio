@@ -14,6 +14,17 @@ interface Props {
   cellSize: string;
 }
 
+type CellNeighbors = {
+  top: CellProps;
+  bottom: CellProps;
+  left: CellProps;
+  right: CellProps;
+  topLeft: CellProps;
+  topRight: CellProps;
+  bottomLeft: CellProps;
+  bottomRight: CellProps;
+};
+
 function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const initGrid = (): CellProps[][] => {
     return Array.from({ length: nRows }, () =>
@@ -52,26 +63,16 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
     row: number,
     col: number
   ): number => {
-    const deadCell = { isAlive: false };
+    const deadCell: CellProps = { isAlive: false };
     const neighbors: CellProps[] = [
-      ...(row === 0
-        ? Array(3).fill(deadCell)
-        : [
-            prevGrid[Math.max(row - 1, 0)][Math.max(col - 1, 0)],
-            prevGrid[Math.max(row - 1, 0)][col],
-            prevGrid[Math.max(row - 1, 0)][Math.min(col + 1, nCols - 1)],
-          ]), // top neighbors
-      col === 0 ? deadCell : prevGrid[row][Math.max(col - 1, 0)], // left
-      col === nCols ? deadCell : prevGrid[row][Math.min(col + 1, nCols - 1)], // right
-      ...(row === nRows - 1
-        ? Array(3).fill(deadCell)
-        : [
-            prevGrid[Math.min(row + 1, nRows - 1)][Math.max(col - 1, 0)],
-            prevGrid[Math.min(row + 1, nRows - 1)][col],
-            prevGrid[Math.min(row + 1, nRows - 1)][
-              Math.min(col + 1, nCols - 1)
-            ],
-          ]), // bottom
+      (prevGrid[row - 1] || [])[col - 1] || deadCell, // top right
+      (prevGrid[row - 1] || [])[col] || deadCell, // top
+      (prevGrid[row - 1] || [])[col + 1] || deadCell, // top left
+      prevGrid[row][col - 1] || deadCell, // left
+      prevGrid[row][col + 1] || deadCell, // right
+      (prevGrid[row + 1] || [])[col - 1] || deadCell, // bottom left
+      (prevGrid[row + 1] || [])[col] || deadCell, // bottom
+      (prevGrid[row + 1] || [])[col + 1] || deadCell, // bottom right
     ];
 
     let count = 0;
