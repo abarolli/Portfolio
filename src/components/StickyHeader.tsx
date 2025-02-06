@@ -4,17 +4,17 @@ import styles from "./StickyHeader.module.css";
 
 interface Props {
   title: string;
-  color?: string;
+  className?: string;
 }
 
-function StickyHeader({ title, color }: Props) {
-  const [isSticky, setIsSticky] = useState(false);
+function StickyHeader({ title, className }: Props) {
+  const [isVisible, setIsVisible] = useState(false);
   const headerRef = useRef(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setIsSticky(true);
-        else setIsSticky(false);
+        if (entry.isIntersecting) setIsVisible(true);
+        else setIsVisible(false);
       },
       {
         root: null,
@@ -33,10 +33,11 @@ function StickyHeader({ title, color }: Props) {
   return (
     <>
       <h1
-        style={{ color }}
-        className={[styles.stickyHeader, isSticky ? styles.sticky : ""].join(
-          " "
-        )}
+        className={[
+          styles.stickyHeader,
+          isVisible ? styles.stickyHeaderVisible : "",
+          className,
+        ].join(" ")}
         ref={headerRef}
       >
         {title}
