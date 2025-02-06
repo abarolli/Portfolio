@@ -1,16 +1,9 @@
 html {
   font-size: 62.5%; /* 62.5% of the default 16px font-size is 10px */
-  height: 100vh;
-}
-
-body {
-  height: 100%;
-  width: 100%;
 }
 
 #root {
-  height: 100%;
-  width: 100%;
+  overflow: visible;
   --mainTheme: #0a192f;
   --accents: #00aeef;
   --text: #ffffff;
@@ -68,7 +61,7 @@ button {
 /* GENERIC SCREEN STYLES */
 .screen {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   position: relative;
 }
 

@@ -206,7 +206,7 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
         backgroundColor: colors.subtleAccents,
         color: colors.text,
       }}
-      className="screen--centered screen--centered-col"
+      className="screen--centered"
     >
       <div>
         <h1>Game of Life</h1>
