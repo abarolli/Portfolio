@@ -1,0 +1,11 @@
+.stickyHeader {
+  position: absolute;
+  z-index: 1;
+  display: inline-block;
+  margin: 0 0 0 30px;
+}
+
+.stickyHeader.sticky {
+  position: sticky;
+  top: 0;
+}
