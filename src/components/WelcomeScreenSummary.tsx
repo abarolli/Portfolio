@@ -5,9 +5,13 @@ function WelcomeScreenSummary() {
   return (
     <div style={{ whiteSpace: "wrap" }}>
       <p style={{ marginBottom: "20px", color: colors.text }}>
-        Hello, my name is Adeiron (Oni) Barolli and I am a passionate software
-        developer with expertise in technologies and languages such as Java,
-        Python, JavaScript, SQL, Django, and more.
+        My name's Adeiron (Oni) Barolli and I am a passionate software developer
+        with expertise in technologies and languages such as{" "}
+        <span style={{ color: colors.brightNeonGreen }}>Java</span>,{" "}
+        <span style={{ color: colors.cyberOrange }}>Python</span>,{" "}
+        <span style={{ color: colors.neonPink }}>JavaScript</span>,{" "}
+        <span style={{ color: colors.electricCyan }}>SQL</span>,{" "}
+        <span style={{ color: colors.cyberLime }}>Django</span>, and more.
       </p>
       <p style={{ marginBottom: "20px", color: colors.text }}>
         I have always had a fascination with computers — like many others, this

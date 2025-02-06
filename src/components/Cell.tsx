@@ -1,4 +1,5 @@
 import React from "react";
+import colors from "../configs/colors";
 
 export interface CellProps {
   isAlive?: boolean;
@@ -10,7 +11,7 @@ const Cell = React.memo(function ({ isAlive = false, onClick }: CellProps) {
     <div
       onClick={onClick}
       style={{
-        backgroundColor: isAlive ? "orange" : "white",
+        backgroundColor: isAlive ? colors.cyberOrange : colors.text,
       }}
     ></div>
   );

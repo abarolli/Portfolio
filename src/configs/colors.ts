@@ -5,4 +5,12 @@ export default {
   secondary: "#EAEAEA",
   buttons: "#18A999",
   subtleAccents: "#5A189A",
+  brightNeonGreen: "#00FF00",
+  cyberLime: "#66FF66",
+  deepEmerald: "#008800",
+  glowingTeal: "#00FF99",
+  darkMatrixGreen: "#003300",
+  cyberOrange: "#FF6600",
+  neonPink: "#FF0080",
+  electricCyan: "#00CCFF",
 };

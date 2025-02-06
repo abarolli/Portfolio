@@ -11,6 +11,20 @@ body {
 #root {
   height: 100%;
   width: 100%;
+  --mainTheme: #0a192f;
+  --accents: #00aeef;
+  --text: #ffffff;
+  --secondary: #eaeaea;
+  --buttons: #18a999;
+  --subtleAccents: #5a189a;
+  --brightNeonGreen: #00ff00;
+  --cyberLime: #66ff66;
+  --deepEmerald: #008800;
+  --glowingTeal: #00ff99;
+  --darkMatrixGreen: #003300;
+  --cyberOrange: #ff6600;
+  --neonPink: #ff0080;
+  --electricCyan: #00ccff;
 }
 
 *,
@@ -24,7 +38,8 @@ body {
 
 /* BASE TEXT STYLES */
 h1,
-h2 {
+h2,
+h3 {
   margin: 20px 0;
 }
 
@@ -36,11 +51,21 @@ h2 {
   font-size: 3rem;
 }
 
+h3 {
+  font-size: 2rem;
+}
+
 p {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
+li,
+button {
+  font-size: 1.2rem;
+}
+
+/* GENERIC SCREEN STYLES */
 .screen {
   width: 100%;
   min-height: 100%;
@@ -59,4 +84,20 @@ p {
 
 ul ul {
   margin-left: 10px;
+}
+
+/* BUTTON STYLES */
+
+button {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--buttons);
+  transition-duration: 150ms;
+  font-weight: bolder;
+  color: var(--text);
 }
