@@ -1,6 +1,12 @@
 .cardContainer {
   display: flex;
-  column-gap: 5%;
+  column-gap: 20px;
+}
+
+.cardContainer.cardContainerHoverable:hover {
+  box-shadow: 0 0 10px black;
+  border-radius: 10px;
+  transition-duration: 200ms;
 }
 
 .cardSection {

@@ -7,6 +7,7 @@ interface Props {
   IconComponent?: React.ReactNode;
   DescriptionComponent: React.ReactNode;
   style?: React.CSSProperties;
+  className?: string;
   displayClassName?: string;
   descriptionClassName?: string;
 }
@@ -16,11 +17,12 @@ function Card({
   IconComponent,
   DescriptionComponent,
   style,
+  className,
   displayClassName,
   descriptionClassName,
 }: Props) {
   return (
-    <div className={styles.cardContainer} style={style}>
+    <div className={[styles.cardContainer, className].join(" ")} style={style}>
       <div
         className={[
           styles.cardSection,
