@@ -1,11 +1,13 @@
 .stickyHeader {
   position: absolute;
   z-index: 1;
-  display: inline-block;
+  opacity: 0;
   margin: 0 0 0 30px;
 }
 
 .stickyHeader.sticky {
+  opacity: 1;
   position: sticky;
   top: 0;
+  transition-duration: 350ms;
 }
