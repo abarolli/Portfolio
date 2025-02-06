@@ -25,9 +25,7 @@ function App() {
           nCols={window.innerWidth < 1600 ? 50 : 60}
           cellSize="15px"
         />
-        <Screen style={{ backgroundColor: colors.darkMatrixGreen }}>
-          Hello
-        </Screen>
+        <PythonLibrariesScreen />
       </div>
     </>
   );

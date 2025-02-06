@@ -1,6 +1,6 @@
 .cardContainer {
   display: flex;
-  column-gap: 1%;
+  column-gap: 5%;
 }
 
 .cardSection {
@@ -11,9 +11,12 @@
   width: 50%;
 }
 
-.cardDisplay > h1 {
-  margin-bottom: 20px;
-  font-size: 4rem;
+.cardSection.cardSectionCenteredRightAligned {
+  align-items: end;
+}
+
+.cardSection.cardSectionCenteredLeftAligned {
+  align-items: start;
 }
 
 @media screen and (max-width: 900px) {
