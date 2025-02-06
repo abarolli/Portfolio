@@ -1,0 +1,12 @@
+.cell:hover {
+  background-color: lemonchiffon;
+  cursor: pointer;
+}
+
+.cell.cellAlive {
+  background-color: var(--cyberOrange);
+}
+
+.cellDead {
+  background-color: var(--accents);
+}
