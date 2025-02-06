@@ -23,8 +23,22 @@ body {
 }
 
 /* BASE TEXT STYLES */
+h1,
+h2 {
+  margin: 20px 0;
+}
+
 h1 {
-  margin: 0;
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .screen {

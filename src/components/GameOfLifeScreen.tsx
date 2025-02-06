@@ -14,17 +14,6 @@ interface Props {
   cellSize: string;
 }
 
-type CellNeighbors = {
-  top: CellProps;
-  bottom: CellProps;
-  left: CellProps;
-  right: CellProps;
-  topLeft: CellProps;
-  topRight: CellProps;
-  bottomLeft: CellProps;
-  bottomRight: CellProps;
-};
-
 function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const initGrid = (): CellProps[][] => {
     return Array.from({ length: nRows }, () =>
@@ -131,29 +120,62 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className={styles.gameOfLife}>
       <div
         style={{
           gridTemplate: `repeat(${nRows}, ${cellSize}) / repeat(${nCols}, ${cellSize})`,
         }}
-        className={styles.gameOfLifeContainer}
+        className={styles.gameOfLifeGrid}
       >
         {mapGridToCellComponents()}
       </div>
       <div className={styles.gameOfLifeController}>
-        <button style={{ marginBottom: "20px" }} onClick={startAnimation}>
-          Play
-        </button>
-        <button style={{ marginBottom: "20px" }} onClick={stopAnimation}>
-          Stop
-        </button>
-        <button style={{ marginBottom: "20px" }} onClick={updateNextGeneration}>
-          Next Generation
-        </button>
+        <button onClick={startAnimation}>Play</button>
+        <button onClick={stopAnimation}>Stop</button>
+        <button onClick={updateNextGeneration}>Next Generation</button>
       </div>
     </div>
   );
 }
+
+const GameOfLifeDescription: JSX.Element = (
+  <div className={styles.gameOfLifeDescription}>
+    <p>
+      <strong>Game of Life</strong> is a cellular automaton that was introduced
+      by famous computer scientist, <strong>John Conway</strong>. Among many
+      other things, it shows how complex behavior can arise from simple,
+      deterministic rules.
+    </p>
+    <h2>Rules:</h2>
+    <ul>
+      <li>
+        If a cell is alive:
+        <ul>
+          <li>
+            If it is surrounded by one or no live neighbors, it dies by
+            solitude.
+          </li>
+          <li>
+            If it is surrounded by four or more live neighbors, it dies by
+            overpopulation.
+          </li>
+          <li>
+            If it is surrounded by two or three live neighbors, it survives to
+            the next generation.
+          </li>
+        </ul>
+      </li>
+      <li>
+        If a cell is dead:
+        <ul>
+          <li>
+            If it is surrounded by three live neighbors, it becomes alive.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+);
 
 function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
   return (
@@ -164,51 +186,11 @@ function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
       }}
       className="screen--centered screen--centered-col"
     >
-      <h1 style={{ marginBottom: "20px" }}>Game of Life</h1>
-      <div style={{ position: "relative", lineHeight: "15px" }}>
-        <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
-        <div
-          style={{
-            width: "250px",
-            position: "absolute",
-            top: 0,
-            right: "100%",
-          }}
-        >
-          <p>
-            <strong>Game of Life</strong> is a cellular automaton that was
-            introduced by famous computer scientist,{" "}
-            <strong>John Conway</strong>. Among many other things, it shows how
-            complex behavior can arise from simple, deterministic rules.
-          </p>
-          <h2 style={{ marginTop: "20px" }}>Rules:</h2>
-          <ul>
-            <li>
-              If a cell is alive:
-              <ul>
-                <li>
-                  If it is surrounded by one or no live neighbors, it dies by
-                  solitude.
-                </li>
-                <li>
-                  If it is surrounded by four or more live neighbors, it dies by
-                  overpopulation.
-                </li>
-                <li>
-                  If it is surrounded by two or three live neighbors, it
-                  survives to the next generation.
-                </li>
-              </ul>
-            </li>
-            <li>
-              If a cell is dead:
-              <ul>
-                <li>
-                  If it is surrounded by three live neighbors, it becomes alive.
-                </li>
-              </ul>
-            </li>
-          </ul>
+      <div>
+        <h1>Game of Life</h1>
+        <div className={styles.gameOfLifeContainer}>
+          {GameOfLifeDescription}
+          <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
         </div>
       </div>
     </Screen>

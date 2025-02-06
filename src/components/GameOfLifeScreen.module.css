@@ -1,16 +1,28 @@
-.gameOfLifeContainer {
+.gameOfLife {
+  display: flex;
+}
+
+.gameOfLifeGrid {
   display: grid;
-  background-color: grey;
+  background-color: lightgrey;
   gap: 1px;
   margin-right: 20px;
   margin-left: 20px;
 }
 
 .gameOfLifeController {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  top: 0;
-  left: 100%;
-  white-space: nowrap;
+}
+
+.gameOfLifeController button {
+  margin-bottom: 20px;
+}
+
+.gameOfLifeContainer {
+  display: flex;
+}
+
+.gameOfLifeDescription {
+  width: 350px;
 }
