@@ -1,6 +1,10 @@
 import React from "react";
+import AOS from "aos";
 
+import "aos/dist/aos.css";
 import styles from "./Card.module.css";
+
+AOS.init();
 
 interface Props {
   title: string;
@@ -10,6 +14,7 @@ interface Props {
   className?: string;
   displayClassName?: string;
   descriptionClassName?: string;
+  fadeIn?: boolean;
 }
 
 function Card({
@@ -20,6 +25,7 @@ function Card({
   className,
   displayClassName,
   descriptionClassName,
+  fadeIn,
 }: Props) {
   return (
     <div className={[styles.cardContainer, className].join(" ")} style={style}>
@@ -39,6 +45,7 @@ function Card({
           styles.cardDescription,
           descriptionClassName,
         ].join(" ")}
+        data-aos={fadeIn && "fade-right"}
       >
         {DescriptionComponent}
       </div>

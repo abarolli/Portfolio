@@ -3,10 +3,8 @@
   column-gap: 20px;
 }
 
-.cardContainer.cardContainerHoverable:hover {
-  box-shadow: 0 0 10px black;
-  border-radius: 10px;
-  transition-duration: 200ms;
+.cardContainerGlowingTeal {
+  color: var(--brightPurple);
 }
 
 .cardSection {
