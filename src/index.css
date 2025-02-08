@@ -3,13 +3,14 @@ html {
 }
 
 #root {
+  color: var(--text);
   overflow: visible;
   --mainTheme: #0a192f;
   --accents: #00aeef;
   --text: #ffffff;
   --secondary: #eaeaea;
   --buttons: #18a999;
-  --subtleAccents: #5a189a;
+  --brightPurple: #5a189a;
   --brightNeonGreen: #00ff00;
   --cyberLime: #66ff66;
   --deepEmerald: #008800;
@@ -103,5 +104,10 @@ a {
 }
 
 .coding-adventures-header {
-  color: white;
+  color: var(--cyberOrange);
+}
+
+.hoverable--grow:hover {
+  transition-duration: 200ms;
+  transform: scale(1.1);
 }
