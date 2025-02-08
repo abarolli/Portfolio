@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import "normalize.css";
 import "./index.css";
@@ -8,14 +8,14 @@ import GameOfLifeScreen from "./components/GameOfLifeScreen";
 import StickyHeader from "./components/StickyHeader";
 import colors from "./configs/colors";
 import PythonLibrariesScreen from "./components/PythonLibrariesScreen";
+import BoredMembersScreen from "./components/BoredMembersScreen";
 
 function App() {
+  const divRef = useRef<HTMLDivElement>(null);
   return (
     <>
-      <WelcomeScreen />
-      <div
-        style={{ position: "relative", backgroundColor: colors.subtleAccents }}
-      >
+      <WelcomeScreen scrollToRef={divRef} />
+      <div style={{ backgroundColor: colors.brightPurple }}>
         <StickyHeader
           title="Coding Adventures"
           className="coding-adventures-header"
@@ -24,7 +24,9 @@ function App() {
           nRows={window.innerHeight < 700 ? 30 : 40}
           nCols={window.innerWidth < 1600 ? 50 : 60}
           cellSize="15px"
+          ref={divRef}
         />
+        <BoredMembersScreen />
         <PythonLibrariesScreen />
       </div>
     </>
