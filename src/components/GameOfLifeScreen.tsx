@@ -16,6 +16,20 @@ interface Props {
 
 function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const initGrid = (): CellProps[][] => {
+    const grid = emptyGrid();
+    const [centerY, centerX] = [Math.floor(nRows / 2), Math.floor(nCols / 2)];
+    for (let x = 1; x <= 3; x++) {
+      grid[centerY][centerX - x].isAlive = true;
+      grid[centerY][centerX + x].isAlive = true;
+    }
+    for (let y = 1; y <= 2; y++) {
+      grid[centerY - y][centerX].isAlive = true;
+      grid[centerY + y][centerX].isAlive = true;
+    }
+    return grid;
+  };
+
+  const emptyGrid = (): CellProps[][] => {
     return Array.from({ length: nRows }, () =>
       Array.from({ length: nCols }, () => ({}))
     );
@@ -23,6 +37,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
 
   const [grid, setGrid] = useState(initGrid());
   const animationRef = useRef<number | null>(null);
+  const isClicked = useRef<boolean | null>(null);
   const [isRunning, setIsRunning] = useState(Boolean(animationRef.current));
 
   const handleCellClick = useCallback((index: number) => {
@@ -113,12 +128,21 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
     setIsRunning(false);
   };
 
+  const reset = () => {
+    stopAnimation();
+    setGrid(emptyGrid());
+  };
+
   const mapGridToCellComponents = () => {
-    const retVal = grid
-      .flat()
-      .map((cellProp, index) => (
-        <Cell {...cellProp} onClick={cellClickHandlers[index]} key={index} />
-      ));
+    const retVal = grid.flat().map((cellProp, index) => (
+      <Cell
+        {...cellProp}
+        onMouseOver={(e) => {
+          if (isClicked.current) cellClickHandlers[index](e);
+        }}
+        onMouseDown={cellClickHandlers[index]}
+      />
+    ));
     return retVal;
   };
 
@@ -129,6 +153,8 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
           gridTemplate: `repeat(${nRows}, ${cellSize}) / repeat(${nCols}, ${cellSize})`,
         }}
         className={styles.gameOfLifeGrid}
+        onMouseDown={() => (isClicked.current = true)}
+        onMouseUp={() => (isClicked.current = false)}
       >
         {mapGridToCellComponents()}
       </div>
@@ -145,6 +171,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
         <button onClick={startAnimation}>Play</button>
         <button onClick={stopAnimation}>Stop</button>
         <button onClick={updateNextGeneration}>Next Generation</button>
+        <button onClick={reset}>Reset</button>
       </div>
     </div>
   );
@@ -199,24 +226,30 @@ const GameOfLifeDescription: JSX.Element = (
   </div>
 );
 
-function GameOfLifeScreen({ nRows, nCols, cellSize }: Props) {
-  return (
-    <Screen
-      style={{
-        backgroundColor: colors.subtleAccents,
-        color: colors.text,
-      }}
-      className="screen--centered"
-    >
-      <div>
-        <h1>Game of Life</h1>
-        <div className={styles.gameOfLifeContainer}>
-          {GameOfLifeDescription}
-          <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
+const GameOfLifeScreen = React.forwardRef(
+  (
+    { nRows, nCols, cellSize }: Props,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <Screen
+        style={{
+          backgroundColor: colors.brightPurple,
+          color: colors.text,
+        }}
+        className="screen--centered"
+        ref={ref}
+      >
+        <div>
+          <h1 className={styles.header}>Game of Life</h1>
+          <div className={styles.gameOfLifeContainer}>
+            {GameOfLifeDescription}
+            <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
+          </div>
         </div>
-      </div>
-    </Screen>
-  );
-}
+      </Screen>
+    );
+  }
+);
 
 export default GameOfLifeScreen;

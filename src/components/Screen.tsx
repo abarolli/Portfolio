@@ -8,12 +8,17 @@ interface Props {
   className?: string;
 }
 
-function Screen({ children, style, className }: Props) {
-  return (
-    <div className={["screen", className].join(" ")} style={style}>
-      {children}
-    </div>
-  );
-}
+const Screen = React.forwardRef(
+  (
+    { children, style, className }: Props,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <div ref={ref} className={["screen", className].join(" ")} style={style}>
+        {children}
+      </div>
+    );
+  }
+);
 
 export default Screen;
