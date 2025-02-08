@@ -18,25 +18,33 @@ function PythonLibrariesScreen() {
   return (
     <Screen
       className="screen--centered screen--centered-col"
-      style={{ backgroundColor: colors.buttons }}
+      style={{ backgroundColor: colors.electricCyan }}
     >
       <h1 className={styles.header}>Python Libraries I've Written</h1>
       <a href="https://pypi.org/project/tradebot/" target="_blank">
         <Card
           title="tradebot"
           DescriptionComponent={TradebotDescription}
-          className={cardStyles.cardContainerHoverable}
+          className={[
+            cardStyles.cardContainerGlowingTeal,
+            "hoverable--grow",
+          ].join(" ")}
           displayClassName={cardStyles.cardSectionCenteredRightAligned}
           descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+          fadeIn={true}
         />
       </a>
       <a href="https://pypi.org/project/jenkins-log-scanner/" target="_blank">
         <Card
           title="JenkinsLogScanner"
           DescriptionComponent={JenkinsLogScannerDescription}
-          className={cardStyles.cardContainerHoverable}
+          className={[
+            cardStyles.cardContainerGlowingTeal,
+            "hoverable--grow",
+          ].join(" ")}
           displayClassName={cardStyles.cardSectionCenteredRightAligned}
           descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+          fadeIn={true}
         />
       </a>
     </Screen>
