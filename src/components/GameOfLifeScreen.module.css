@@ -4,8 +4,6 @@
 
 .gameOfLifeGrid {
   display: grid;
-  background-color: lightgrey;
-  gap: 1px;
   margin-right: 20px;
   margin-left: 20px;
   border: 10px solid var(--darkMatrixGreen);

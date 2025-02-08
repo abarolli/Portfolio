@@ -1,3 +1,7 @@
+.cell {
+  border: 1px solid lightgrey;
+}
+
 .cell:hover {
   background-color: lemonchiffon;
   cursor: pointer;
@@ -8,5 +12,5 @@
 }
 
 .cellDead {
-  background-color: var(--accents);
+  background-color: var(--electricCyan);
 }
