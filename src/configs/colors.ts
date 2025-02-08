@@ -4,7 +4,7 @@ export default {
   text: "#FFFFFF",
   secondary: "#EAEAEA",
   buttons: "#18A999",
-  subtleAccents: "#5A189A",
+  brightPurple: "#5A189A",
   brightNeonGreen: "#00FF00",
   cyberLime: "#66FF66",
   deepEmerald: "#008800",
