@@ -1,17 +1,22 @@
 import React from "react";
-import colors from "../configs/colors";
 
 import styles from "./Cell.module.css";
 
 export interface CellProps {
   isAlive?: boolean;
-  onClick?: React.MouseEventHandler;
+  onMouseDown?: React.MouseEventHandler;
+  onMouseOver?: React.MouseEventHandler;
 }
 
-const Cell = React.memo(function ({ isAlive = false, onClick }: CellProps) {
+const Cell = React.memo(function ({
+  isAlive = false,
+  onMouseDown,
+  onMouseOver,
+}: CellProps) {
   return (
     <div
-      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onMouseOver={onMouseOver}
       className={[
         styles.cell,
         isAlive ? styles.cellAlive : styles.cellDead,
