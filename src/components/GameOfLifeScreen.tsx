@@ -20,14 +20,17 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
   const initGrid = (): CellProps[][] => {
     const grid = emptyGrid();
     const [centerY, centerX] = [Math.floor(nRows / 2), Math.floor(nCols / 2)];
-    for (let x = 1; x <= 3; x++) {
-      grid[centerY][centerX - x].isAlive = true;
-      grid[centerY][centerX + x].isAlive = true;
-    }
-    for (let y = 1; y <= 2; y++) {
-      grid[centerY - y][centerX].isAlive = true;
-      grid[centerY + y][centerX].isAlive = true;
-    }
+    grid[centerY][centerX - 1].isAlive = true;
+    grid[centerY][centerX + 1].isAlive = true;
+    grid[centerY - 1][centerX].isAlive = true;
+    grid[centerY + 1][centerX].isAlive = true;
+    grid[centerY - 2][centerX].isAlive = true;
+    grid[centerY + 2][centerX].isAlive = true;
+    grid[centerY - 1][centerX - 2].isAlive = true;
+    grid[centerY + 1][centerX - 2].isAlive = true;
+    grid[centerY - 1][centerX + 2].isAlive = true;
+    grid[centerY + 1][centerX + 2].isAlive = true;
+
     return grid;
   };
 
