@@ -22,33 +22,49 @@ const PythonLibrariesScreen = React.forwardRef(
         style={{ backgroundColor: colors.electricCyan }}
         ref={ref}
       >
-        <h1 className={styles.header}>Python Libraries I've Written</h1>
-        <a href="https://pypi.org/project/tradebot/" target="_blank">
-          <Card
-            title="tradebot"
-            DescriptionComponent={TradebotDescription}
-            className={[
-              cardStyles.cardContainerGlowingTeal,
-              "hoverable--grow",
-            ].join(" ")}
-            displayClassName={cardStyles.cardSectionCenteredRightAligned}
-            descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
-            fadeIn={true}
-          />
-        </a>
-        <a href="https://pypi.org/project/jenkins-log-scanner/" target="_blank">
-          <Card
-            title="JenkinsLogScanner"
-            DescriptionComponent={JenkinsLogScannerDescription}
-            className={[
-              cardStyles.cardContainerGlowingTeal,
-              "hoverable--grow",
-            ].join(" ")}
-            displayClassName={cardStyles.cardSectionCenteredRightAligned}
-            descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
-            fadeIn={true}
-          />
-        </a>
+        <div
+          className={[styles.screenMainContent, "screen__main-content"].join(
+            " "
+          )}
+        >
+          <h1 className={styles.header}>Python Libraries I've Written</h1>
+          <a
+            className={styles.cardContainerAlignRight}
+            href="https://pypi.org/project/tradebot/"
+            target="_blank"
+          >
+            <Card
+              title="tradebot"
+              DescriptionComponent={TradebotDescription}
+              className={[
+                cardStyles.cardContainerGlowingTeal,
+                styles.collapseHeaders,
+                "hoverable--grow",
+              ].join(" ")}
+              displayClassName={cardStyles.cardSectionCenteredRightAligned}
+              descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+              fadeIn={true}
+            />
+          </a>
+          <a
+            className={styles.cardContainerAlignRight}
+            href="https://pypi.org/project/jenkins-log-scanner/"
+            target="_blank"
+          >
+            <Card
+              title="JenkinsLogScanner"
+              DescriptionComponent={JenkinsLogScannerDescription}
+              className={[
+                cardStyles.cardContainerGlowingTeal,
+                styles.collapseHeaders,
+                "hoverable--grow",
+              ].join(" ")}
+              displayClassName={cardStyles.cardSectionCenteredRightAligned}
+              descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+              fadeIn={true}
+            />
+          </a>
+        </div>
       </Screen>
     );
   }

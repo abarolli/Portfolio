@@ -79,7 +79,6 @@ button {
 
 .screen--centered.screen--centered-col {
   flex-direction: column;
-  row-gap: 3rem;
 }
 
 ul ul {
