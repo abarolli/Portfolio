@@ -20,11 +20,7 @@ function App() {
   return (
     <>
       <WelcomeScreen scrollToRef={gameOfLifeRef} />
-      <div style={{ backgroundColor: colors.brightPurple }}>
-        <StickyHeader
-          title="Coding Adventures"
-          className="coding-adventures-header"
-        />
+      <div>
         <GameOfLifeScreen
           nRows={window.innerHeight < 700 ? 30 : 40}
           nCols={window.innerWidth < 1600 ? 50 : 60}
