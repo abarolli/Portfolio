@@ -27,6 +27,8 @@ function WelcomeScreen({ scrollToRef }: Props) {
         />
       </div>
       <button
+        data-aos="bounce"
+        className={styles.scrollToButton}
         onClick={() => {
           scrollToRef.current?.scrollIntoView({ behavior: "smooth" });
         }}
