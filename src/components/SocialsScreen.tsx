@@ -4,8 +4,6 @@ import Screen from "./Screen";
 import "../index.css";
 import colors from "../configs/colors";
 
-import "../index.css";
-
 const SocialsScreen = React.forwardRef(
   (_, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
@@ -22,10 +20,10 @@ const SocialsScreen = React.forwardRef(
           >
             <img
               src="/github-mark-white.svg"
-              height={"200px"}
               width={"200px"}
               alt=""
-              style={{ marginRight: "50px" }}
+              data-aos="fade-left"
+              style={{ marginRight: "150px" }}
               className="hoverable--grow"
             />
           </a>
@@ -35,9 +33,9 @@ const SocialsScreen = React.forwardRef(
           >
             <img
               src="/LI-In-Bug.png"
-              height={"200px"}
               width={"200px"}
               alt=""
+              data-aos="fade-right"
               className="hoverable--grow"
             />
           </a>
