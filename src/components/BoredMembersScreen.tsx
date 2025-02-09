@@ -21,6 +21,7 @@ const BoredMembersIcon = (
       height="300px"
       width="300px"
       alt=""
+      className={styles.boredMembersIcon}
     />
   </div>
 );
@@ -33,8 +34,10 @@ const BoredMembersScreen = React.forwardRef(
   ({ scrollToRef }: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
       <Screen
-        style={{ backgroundColor: colors.buttons }}
-        className="screen--centered screen--centered-col"
+        className={[
+          styles.boredMembersScreen,
+          "screen--centered screen--centered-col",
+        ].join(" ")}
         ref={ref}
       >
         <div
