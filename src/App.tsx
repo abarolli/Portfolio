@@ -9,11 +9,13 @@ import StickyHeader from "./components/StickyHeader";
 import colors from "./configs/colors";
 import PythonLibrariesScreen from "./components/PythonLibrariesScreen";
 import BoredMembersScreen from "./components/BoredMembersScreen";
+import SocialsScreen from "./components/SocialsScreen";
 
 function App() {
   const gameOfLifeRef = useRef<HTMLDivElement>(null);
   const boredMembersRef = useRef<HTMLDivElement>(null);
   const pythonLibrariesRef = useRef<HTMLDivElement>(null);
+  const socialsRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -34,7 +36,11 @@ function App() {
           ref={boredMembersRef}
           scrollToRef={pythonLibrariesRef}
         />
-        <PythonLibrariesScreen ref={pythonLibrariesRef} />
+        <PythonLibrariesScreen
+          ref={pythonLibrariesRef}
+          scrollToRef={socialsRef}
+        />
+        <SocialsScreen ref={socialsRef} />
       </div>
     </>
   );
