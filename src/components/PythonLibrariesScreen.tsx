@@ -14,41 +14,44 @@ const JenkinsLogScannerDescription = (
 
 const TradebotDescription = <p>A Python wrapper around the TDAmeritrade API</p>;
 
-function PythonLibrariesScreen() {
-  return (
-    <Screen
-      className="screen--centered screen--centered-col"
-      style={{ backgroundColor: colors.electricCyan }}
-    >
-      <h1 className={styles.header}>Python Libraries I've Written</h1>
-      <a href="https://pypi.org/project/tradebot/" target="_blank">
-        <Card
-          title="tradebot"
-          DescriptionComponent={TradebotDescription}
-          className={[
-            cardStyles.cardContainerGlowingTeal,
-            "hoverable--grow",
-          ].join(" ")}
-          displayClassName={cardStyles.cardSectionCenteredRightAligned}
-          descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
-          fadeIn={true}
-        />
-      </a>
-      <a href="https://pypi.org/project/jenkins-log-scanner/" target="_blank">
-        <Card
-          title="JenkinsLogScanner"
-          DescriptionComponent={JenkinsLogScannerDescription}
-          className={[
-            cardStyles.cardContainerGlowingTeal,
-            "hoverable--grow",
-          ].join(" ")}
-          displayClassName={cardStyles.cardSectionCenteredRightAligned}
-          descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
-          fadeIn={true}
-        />
-      </a>
-    </Screen>
-  );
-}
+const PythonLibrariesScreen = React.forwardRef(
+  (_, ref: React.ForwardedRef<HTMLDivElement>) => {
+    return (
+      <Screen
+        className="screen--centered screen--centered-col"
+        style={{ backgroundColor: colors.electricCyan }}
+        ref={ref}
+      >
+        <h1 className={styles.header}>Python Libraries I've Written</h1>
+        <a href="https://pypi.org/project/tradebot/" target="_blank">
+          <Card
+            title="tradebot"
+            DescriptionComponent={TradebotDescription}
+            className={[
+              cardStyles.cardContainerGlowingTeal,
+              "hoverable--grow",
+            ].join(" ")}
+            displayClassName={cardStyles.cardSectionCenteredRightAligned}
+            descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+            fadeIn={true}
+          />
+        </a>
+        <a href="https://pypi.org/project/jenkins-log-scanner/" target="_blank">
+          <Card
+            title="JenkinsLogScanner"
+            DescriptionComponent={JenkinsLogScannerDescription}
+            className={[
+              cardStyles.cardContainerGlowingTeal,
+              "hoverable--grow",
+            ].join(" ")}
+            displayClassName={cardStyles.cardSectionCenteredRightAligned}
+            descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+            fadeIn={true}
+          />
+        </a>
+      </Screen>
+    );
+  }
+);
 
 export default PythonLibrariesScreen;

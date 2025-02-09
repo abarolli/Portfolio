@@ -7,11 +7,13 @@ import Cell, { CellProps } from "./Cell";
 import "../index.css";
 import styles from "./GameOfLifeScreen.module.css";
 import colors from "../configs/colors";
+import ContinueButton from "./ContinueButton";
 
 interface Props {
   nRows: number;
   nCols: number;
   cellSize: string;
+  scrollToRef?: React.RefObject<HTMLDivElement>;
 }
 
 function GameOfLife({ nRows, nCols, cellSize }: Props) {
@@ -183,7 +185,8 @@ const GameOfLifeDescription: JSX.Element = (
       <strong>Game of Life</strong> is a cellular automaton that was introduced
       by famous computer scientist, <strong>John Conway</strong>. Among many
       other things, it shows how complex behavior can arise from simple,
-      deterministic rules.
+      deterministic rules. Thought it'd make a fun visual to start the
+      portfolio.
     </p>
     <h2>Rules:</h2>
     <ul>
@@ -228,7 +231,7 @@ const GameOfLifeDescription: JSX.Element = (
 
 const GameOfLifeScreen = React.forwardRef(
   (
-    { nRows, nCols, cellSize }: Props,
+    { nRows, nCols, cellSize, scrollToRef }: Props,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -237,16 +240,27 @@ const GameOfLifeScreen = React.forwardRef(
           backgroundColor: colors.brightPurple,
           color: colors.text,
         }}
-        className="screen--centered"
+        className="screen--centered screen--centered-col"
         ref={ref}
       >
-        <div>
+        <div
+          className={[styles.screenMainContent, "screen__main-content"].join(
+            " "
+          )}
+        >
           <h1 className={styles.header}>Game of Life</h1>
           <div className={styles.gameOfLifeContainer}>
             {GameOfLifeDescription}
             <GameOfLife nRows={nRows} nCols={nCols} cellSize={cellSize} />
           </div>
         </div>
+        <ContinueButton
+          onClick={() =>
+            scrollToRef?.current?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Continue
+        </ContinueButton>
       </Screen>
     );
   }

@@ -7,6 +7,7 @@ import colors from "../configs/colors";
 
 import "../index.css";
 import styles from "./WelcomeScreen.module.css";
+import ContinueButton from "./ContinueButton";
 
 interface Props {
   scrollToRef: React.RefObject<HTMLDivElement>;
@@ -16,7 +17,7 @@ function WelcomeScreen({ scrollToRef }: Props) {
   return (
     <Screen
       className="screen--centered screen--centered-col"
-      style={{ backgroundColor: colors.mainTheme, padding: "20px" }}
+      style={{ backgroundColor: colors.mainTheme }}
     >
       <div className={styles.welcomeScreenCardContainer}>
         <Card
@@ -26,15 +27,13 @@ function WelcomeScreen({ scrollToRef }: Props) {
           fadeIn={true}
         />
       </div>
-      <button
-        data-aos="bounce"
-        className={styles.scrollToButton}
-        onClick={() => {
-          scrollToRef.current?.scrollIntoView({ behavior: "smooth" });
-        }}
+      <ContinueButton
+        onClick={() =>
+          scrollToRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
       >
-        Click for coding adventures
-      </button>
+        Click for Coding Adventures
+      </ContinueButton>
     </Screen>
   );
 }

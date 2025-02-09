@@ -11,10 +11,13 @@ import PythonLibrariesScreen from "./components/PythonLibrariesScreen";
 import BoredMembersScreen from "./components/BoredMembersScreen";
 
 function App() {
-  const divRef = useRef<HTMLDivElement>(null);
+  const gameOfLifeRef = useRef<HTMLDivElement>(null);
+  const boredMembersRef = useRef<HTMLDivElement>(null);
+  const pythonLibrariesRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
-      <WelcomeScreen scrollToRef={divRef} />
+      <WelcomeScreen scrollToRef={gameOfLifeRef} />
       <div style={{ backgroundColor: colors.brightPurple }}>
         <StickyHeader
           title="Coding Adventures"
@@ -24,10 +27,14 @@ function App() {
           nRows={window.innerHeight < 700 ? 30 : 40}
           nCols={window.innerWidth < 1600 ? 50 : 60}
           cellSize="15px"
-          ref={divRef}
+          scrollToRef={boredMembersRef}
+          ref={gameOfLifeRef}
         />
-        <BoredMembersScreen />
-        <PythonLibrariesScreen />
+        <BoredMembersScreen
+          ref={boredMembersRef}
+          scrollToRef={pythonLibrariesRef}
+        />
+        <PythonLibrariesScreen ref={pythonLibrariesRef} />
       </div>
     </>
   );

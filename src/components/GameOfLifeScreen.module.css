@@ -2,10 +2,17 @@
   display: flex;
 }
 
+.screenMainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .gameOfLifeGrid {
   display: grid;
   margin-right: 20px;
   margin-left: 20px;
+  height: fit-content;
   border: 10px solid var(--darkMatrixGreen);
   border-radius: 20px;
   overflow: hidden;
