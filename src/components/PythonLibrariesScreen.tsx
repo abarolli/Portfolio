@@ -7,6 +7,7 @@ import colors from "../configs/colors";
 import "../index.css";
 import cardStyles from "./Card.module.css";
 import styles from "./PythonLibrariesScreen.module.css";
+import ContinueButton from "./ContinueButton";
 
 const JenkinsLogScannerDescription = (
   <p>A fast utility for scanning Jenkins logs efficiently</p>
@@ -14,8 +15,12 @@ const JenkinsLogScannerDescription = (
 
 const TradebotDescription = <p>A Python wrapper around the TDAmeritrade API</p>;
 
+interface Props {
+  scrollToRef: React.RefObject<HTMLDivElement>;
+}
+
 const PythonLibrariesScreen = React.forwardRef(
-  (_, ref: React.ForwardedRef<HTMLDivElement>) => {
+  ({ scrollToRef }: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
       <Screen
         className="screen--centered screen--centered-col"
@@ -65,6 +70,13 @@ const PythonLibrariesScreen = React.forwardRef(
             />
           </a>
         </div>
+        <ContinueButton
+          onClick={() =>
+            scrollToRef.current?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Where to find me
+        </ContinueButton>
       </Screen>
     );
   }
