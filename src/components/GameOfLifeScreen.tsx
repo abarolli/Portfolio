@@ -239,11 +239,10 @@ const GameOfLifeScreen = React.forwardRef(
   ) => {
     return (
       <Screen
-        style={{
-          backgroundColor: colors.brightPurple,
-          color: colors.text,
-        }}
-        className="screen--centered screen--centered-col"
+        className={[
+          styles.gameOfLifeScreen,
+          "screen--centered screen--centered-col",
+        ].join(" ")}
         ref={ref}
       >
         <div

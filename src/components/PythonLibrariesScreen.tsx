@@ -23,8 +23,10 @@ const PythonLibrariesScreen = React.forwardRef(
   ({ scrollToRef }: Props, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
       <Screen
-        className="screen--centered screen--centered-col"
-        style={{ backgroundColor: colors.electricCyan }}
+        className={[
+          styles.pythonLibrariesScreen,
+          "screen--centered screen--centered-col",
+        ].join(" ")}
         ref={ref}
       >
         <div
