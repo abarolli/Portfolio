@@ -67,7 +67,7 @@ function WelcomeScreenSummary() {
     },
     {
       label: "UrbanCode Deploy",
-      color: colors.brightNeonGreen,
+      color: colors.cyberOrange,
     },
   ];
 
