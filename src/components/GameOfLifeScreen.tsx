@@ -146,6 +146,7 @@ function GameOfLife({ nRows, nCols, cellSize }: Props) {
           if (isClicked.current) cellClickHandlers[index](e);
         }}
         onMouseDown={cellClickHandlers[index]}
+        key={index}
       />
     ));
     return retVal;
