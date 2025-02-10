@@ -5,8 +5,8 @@ export default function initAOS() {
   if (!isInitialized) {
     console.log("Initializing AOS");
     AOS.init({
-      mirror: true,
-      once: false,
+      mirror: false,
+      once: true,
     });
     isInitialized = true;
   }
