@@ -48,8 +48,8 @@ const PythonLibrariesScreen = React.forwardRef(
                 styles.collapseHeaders,
                 "hoverable--grow",
               ].join(" ")}
-              displayClassName={cardStyles.cardSectionCenteredRightAligned}
-              descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+              displayClassName={cardStyles.cardSectionRightAligned}
+              descriptionClassName={cardStyles.cardSectionLeftAligned}
               fadeIn={true}
             />
           </a>
@@ -66,8 +66,8 @@ const PythonLibrariesScreen = React.forwardRef(
                 styles.collapseHeaders,
                 "hoverable--grow",
               ].join(" ")}
-              displayClassName={cardStyles.cardSectionCenteredRightAligned}
-              descriptionClassName={cardStyles.cardSectionCenteredLeftAligned}
+              displayClassName={cardStyles.cardSectionRightAligned}
+              descriptionClassName={cardStyles.cardSectionLeftAligned}
               fadeIn={true}
             />
           </a>
