@@ -74,11 +74,11 @@ function WelcomeScreenSummary() {
   const buildSkillsListComponent = () => {
     const nRows = 5;
     const nCols = Math.ceil(skills.length / nRows);
-    const animationDuration = 150;
+    const animationDuration = 350;
     const lists = [];
     for (let col = 0; col < nCols; col++) {
       const [startIndex, endIndex] = [col * nRows, col * nRows + nRows];
-
+      const delayOffset = 200;
       lists.push(
         <ul key={col} className={styles.skillsList}>
           {skills.slice(startIndex, endIndex).map((skill, index) => (
@@ -87,7 +87,9 @@ function WelcomeScreenSummary() {
               style={{ color: skill.color }}
               data-aos="fade-right"
               data-aos-duration={animationDuration}
-              data-aos-delay={animationDuration * (col * nRows + index)}
+              data-aos-delay={
+                (animationDuration - delayOffset) * (col * nRows + index)
+              }
             >
               {skill.label}
             </li>
