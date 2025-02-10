@@ -1,0 +1,16 @@
+.linkIconsContainer {
+  display: flex;
+  column-gap: 150px;
+  align-items: center;
+}
+
+@media screen and (max-width: 675px) {
+  .linkIconsContainer {
+    flex-direction: column;
+    row-gap: 100px;
+  }
+
+  .linkIconsContainer .linkedInIcon {
+    transform: translateX(10px);
+  }
+}

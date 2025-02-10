@@ -1,5 +1,6 @@
 import React from "react";
 import Screen from "./Screen";
+import styles from "./SocialsScreen.module.css";
 
 import "../index.css";
 import colors from "../configs/colors";
@@ -13,7 +14,7 @@ const SocialsScreen = React.forwardRef(
         ref={ref}
       >
         <h2>Follow me around</h2>
-        <div>
+        <div className={styles.linkIconsContainer}>
           <a
             href="https://github.com/abarolli?tab=overview&from=2025-02-01&to=2025-02-08"
             target="_blank"
@@ -23,13 +24,13 @@ const SocialsScreen = React.forwardRef(
               width={"200px"}
               alt=""
               data-aos="fade-left"
-              style={{ marginRight: "150px" }}
               className="hoverable--grow"
             />
           </a>
           <a
             href="https://www.linkedin.com/in/adeiron-barolli/"
             target="_blank"
+            className={styles.linkedInIcon}
           >
             <img
               src="/LI-In-Bug.png"
