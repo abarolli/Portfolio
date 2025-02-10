@@ -15,11 +15,11 @@
   width: 50%;
 }
 
-.cardSection.cardSectionCenteredRightAligned {
+.cardSection.cardSectionRightAligned {
   align-items: end;
 }
 
-.cardSection.cardSectionCenteredLeftAligned {
+.cardSection.cardSectionLeftAligned {
   align-items: start;
 }
 

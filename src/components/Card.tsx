@@ -8,9 +8,9 @@ import styles from "./Card.module.css";
 initAOS();
 
 interface Props {
-  title: string;
+  title?: string;
   IconComponent?: React.ReactNode;
-  DescriptionComponent: React.ReactNode;
+  DescriptionComponent?: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
   displayClassName?: string;
@@ -37,7 +37,7 @@ function Card({
           displayClassName,
         ].join(" ")}
       >
-        <h1>{title}</h1>
+        {title && <h1>{title}</h1>}
         {IconComponent}
       </div>
       <div
