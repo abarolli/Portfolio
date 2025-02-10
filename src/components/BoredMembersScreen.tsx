@@ -22,7 +22,6 @@ const BoredMembersIcon = (
       data-aos="fade-right"
       data-aos-duration="500"
       data-aos-easing="ease-in-sine"
-      data-aos-mirror="true"
       src="/bored_members_network.svg"
       alt=""
     />
@@ -40,15 +39,16 @@ const BoredMembersScreen = React.forwardRef(
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
+            console.log("isintersecting");
             setInView(true);
-          } else {
+          } else if (entry.boundingClientRect.bottom > 0) {
             setInView(false);
           }
         },
         {
           root: null,
-          rootMargin: "0px 0px 0px 0px",
-          threshold: 0.5,
+          rootMargin: "0px 0px -30% 0px",
+          threshold: 0,
         }
       );
 
@@ -79,7 +79,6 @@ const BoredMembersScreen = React.forwardRef(
             data-aos-delay="350"
             data-aos-duration="600"
             data-aos-easing="ease-in-sine"
-            data-aos-mirror="true"
             className={styles.headingContainer}
           >
             <h1>
