@@ -1,13 +1,13 @@
 .screenMainContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template: repeat(2, 50%) / repeat(2, 50%);
+  justify-items: center;
   align-items: center;
-  row-gap: 8rem;
 }
 
 .headingContainer {
-  text-align: center;
+  text-align: right;
+  align-self: end;
 }
 
 @keyframes grow {
@@ -15,11 +15,17 @@
     transform: scale(1);
   }
   to {
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
 }
 
 .boredMembersIcon {
+  height: 400px;
+  width: 400px;
+  grid-row: 2;
+  grid-column: 2;
+  z-index: 10;
+  position: relative;
   animation-name: grow;
   animation-duration: 500ms;
   animation-direction: alternate-reverse;
@@ -27,10 +33,36 @@
   animation-iteration-count: infinite;
 }
 
-.boredMembersIcon:hover {
-  animation-play-state: paused;
+.boredMembersIconLink {
+  height: 150px;
+  width: 150px;
+  z-index: 11;
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+}
+
+@media screen and (min-height: 900px) and (min-width: 1200px) {
+  .boredMembersIcon {
+    height: 500px;
+    width: 500px;
+  }
 }
 
 .boredMembersScreen {
-  background: linear-gradient(var(--brightPurple), var(--electricCyan));
+  background-color: var(--electricCyan);
+}
+
+.boredMembersScreen:before {
+  content: " ";
+  background-color: var(--buttons);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  transition-duration: 1000ms;
+}
+
+.inView.boredMembersScreen:before {
+  clip-path: polygon(100% 10%, 100% 100%, 0 100%, 0 84%);
 }
