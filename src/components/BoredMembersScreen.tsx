@@ -3,13 +3,15 @@ import AOS from "aos";
 
 import Screen from "./Screen";
 import colors from "../configs/colors";
+import initAOS from "../aosConfig";
+import Screen from "./Screen";
 import ContinueButton from "./ContinueButton";
 
 import "aos/dist/aos.css";
 import "../index.css";
 import styles from "./BoredMembersScreen.module.css";
 
-AOS.init();
+initAOS();
 
 const BoredMembersIcon = (
   <div className="hoverable--grow">

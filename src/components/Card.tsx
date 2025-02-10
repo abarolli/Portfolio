@@ -1,10 +1,11 @@
 import React from "react";
-import AOS from "aos";
+
+import initAOS from "../aosConfig";
 
 import "aos/dist/aos.css";
 import styles from "./Card.module.css";
 
-AOS.init();
+initAOS();
 
 interface Props {
   title: string;
