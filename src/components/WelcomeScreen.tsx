@@ -16,8 +16,10 @@ interface Props {
 function WelcomeScreen({ scrollToRef }: Props) {
   return (
     <Screen
-      className="screen--centered screen--centered-col"
-      style={{ backgroundColor: colors.mainTheme }}
+      className={[
+        styles.welcomeScreen,
+        "screen--centered screen--centered-col",
+      ].join(" ")}
     >
       <div className={styles.welcomeScreenCardContainer}>
         <Card

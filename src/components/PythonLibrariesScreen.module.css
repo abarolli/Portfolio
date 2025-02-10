@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+.pythonLibrariesScreen {
+  background-color: var(--electricCyan);
+}
+
 .screenMainContent {
   display: flex;
   flex-direction: column;

@@ -3,14 +3,15 @@ import Screen from "./Screen";
 import styles from "./SocialsScreen.module.css";
 
 import "../index.css";
-import colors from "../configs/colors";
 
 const SocialsScreen = React.forwardRef(
   (_, ref: React.ForwardedRef<HTMLDivElement>) => {
     return (
       <Screen
-        style={{ backgroundColor: colors.mainTheme }}
-        className="screen--centered screen--centered-col"
+        className={[
+          styles.socialsScreen,
+          "screen--centered screen--centered-col",
+        ].join(" ")}
         ref={ref}
       >
         <h2>Follow me around</h2>

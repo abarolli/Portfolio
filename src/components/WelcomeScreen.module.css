@@ -8,6 +8,10 @@
   white-space: nowrap;
 }
 
+.welcomeScreen {
+  background-color: var(--mainTheme);
+}
+
 @media screen and (max-width: 900px) {
   .welcomeScreenCardContainer {
     width: 70vw;

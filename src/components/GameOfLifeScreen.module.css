@@ -57,3 +57,7 @@
 .gameOfLifeDescription {
   width: 350px;
 }
+
+.gameOfLifeScreen {
+  background-color: var(--brightPurple);
+}

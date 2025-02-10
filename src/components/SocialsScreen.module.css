@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.socialsScreen {
+  background-color: var(--mainTheme);
+}
+
 @media screen and (max-width: 675px) {
   .linkIconsContainer {
     flex-direction: column;
