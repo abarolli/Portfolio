@@ -6,7 +6,7 @@ export default function initAOS() {
     window.onload = () => {
       AOS.init({
         mirror: false,
-        once: true,
+        once: false,
       });
       isInitialized = true;
       console.log("AOS initialized");
