@@ -8,11 +8,7 @@ interface Props {
 }
 function ContinueButton({ children, onClick }: Props) {
   return (
-    <button
-      data-aos="bounce"
-      className={styles.scrollToButton}
-      onClick={onClick}
-    >
+    <button className={styles.scrollToButton} onClick={onClick}>
       {children}
     </button>
   );
