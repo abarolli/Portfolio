@@ -39,7 +39,6 @@ const BoredMembersScreen = React.forwardRef(
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            console.log("isintersecting");
             setInView(true);
           } else if (entry.boundingClientRect.bottom > 0) {
             setInView(false);
