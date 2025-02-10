@@ -4,7 +4,7 @@ html {
 
 #root {
   color: var(--text);
-  overflow: visible;
+  overflow: hidden;
   --mainTheme: #0a192f;
   --accents: #00aeef;
   --text: #ffffff;
@@ -114,5 +114,5 @@ a {
 
 .hoverable--grow:hover {
   transition-duration: 200ms;
-  transform: scale(1.1);
+  transform: scale(1.1) !important;
 }
