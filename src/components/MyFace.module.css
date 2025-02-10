@@ -4,11 +4,13 @@
   width: 350px;
   background-size: cover;
   border-radius: 50%;
+  align-self: end;
 }
 
 @media screen and (max-width: 900px) {
   .face {
     height: 500px;
     width: 500px;
+    align-self: center;
   }
 }
