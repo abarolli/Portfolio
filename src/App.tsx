@@ -5,8 +5,6 @@ import "./index.css";
 
 import WelcomeScreen from "./components/WelcomeScreen";
 import GameOfLifeScreen from "./components/GameOfLifeScreen";
-import StickyHeader from "./components/StickyHeader";
-import colors from "./configs/colors";
 import PythonLibrariesScreen from "./components/PythonLibrariesScreen";
 import BoredMembersScreen from "./components/BoredMembersScreen";
 import SocialsScreen from "./components/SocialsScreen";
