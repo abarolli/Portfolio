@@ -8,7 +8,7 @@ interface Props {
 }
 function ContinueButton({ children, onClick }: Props) {
   return (
-    <button className={styles.scrollToButton} onClick={onClick}>
+    <button className={styles.continueButton} onClick={onClick}>
       {children}
     </button>
   );
