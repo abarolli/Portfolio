@@ -34,7 +34,7 @@ const PythonLibrariesScreen = React.forwardRef(
             " "
           )}
         >
-          <h1 className={styles.header}>Python Libraries I've Written</h1>
+          <h1 className={styles.header}>Python Libraries I've Published</h1>
           <a
             className={styles.cardContainerAlignRight}
             href="https://pypi.org/project/tradebot/"
