@@ -1,5 +1,6 @@
 .face {
   background-image: url(/me.jpeg);
+  background-position-y: 25%;
   height: 350px;
   width: 350px;
   background-size: cover;
